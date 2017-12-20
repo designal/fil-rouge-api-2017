@@ -1,7 +1,7 @@
 package fr.centralesupelec.sio.endpoints;
 
-import com.google.gson.Gson;
 import fr.centralesupelec.sio.data.MoviesRepository;
+import fr.centralesupelec.sio.endpoints.utils.ResponseHelper;
 import fr.centralesupelec.sio.model.Movie;
 
 import javax.servlet.ServletException;
@@ -12,13 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * A servlet to access the list of {@link Movie}s.
+ */
+// The following pattern will exactly match /movies only.
 @WebServlet(urlPatterns = "/movies")
-public class MoviesServlet extends ApiServlet {
+public class MoviesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        // Get movies from the repository.
+        // TODO: Add pagination parameters
         List<Movie> movies = MoviesRepository.getInstance().getMovies();
-        writeJsonResponse(movies, resp);
+
+        // Write to the response.
+        ResponseHelper.writeJsonResponse(resp, movies);
+
     }
 
 }

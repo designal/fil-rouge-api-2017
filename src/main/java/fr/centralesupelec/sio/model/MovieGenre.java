@@ -1,11 +1,17 @@
 package fr.centralesupelec.sio.model;
 
+/**
+ * An enum for movie genres.
+ */
 public enum MovieGenre {
 
-    COMEDY,
     ADVENTURE,
     ACTION,
     ANIMATION,
-    CRIME
+    COMEDY,
+    CRIME,
+    FANTASY,
+    THRILLER,
+    SCIENCE_FICTION
 
 }
